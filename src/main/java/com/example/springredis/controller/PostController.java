@@ -31,7 +31,7 @@ public class PostController {
 
     @CachePut(value = "post-single", key = "#post.id")
     @PutMapping("/update")
-    public Post updatePostByID(@RequestBody Post post) throws PostNotFoundException {
+    public Post updatePostByID(@RequestBody Post post)  {
         log.info("update post with id {}", post.getId());
         postService.updatePost(post);
         return post;
@@ -39,7 +39,7 @@ public class PostController {
 
     @CacheEvict(value = "post-single", key = "#id")
     @DeleteMapping("/delete/{id}")
-    public void deletePostByID(@PathVariable String id) throws PostNotFoundException {
+    public void deletePostByID(@PathVariable String id) {
         log.info("delete post with id {}", id);
         postService.deletePost(id);
     }
